@@ -1,0 +1,26 @@
+[04-Jul-2017 09:31:24 America/Chicago] PHP Deprecated:  Function eregi() is deprecated in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 2
+[04-Jul-2017 09:32:29 America/Chicago] PHP Deprecated:  Function eregi() is deprecated in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 2
+[04-Jul-2017 09:35:46 America/Chicago] PHP Warning:  preg_match(): Delimiter must not be alphanumeric or backslash in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 2
+[04-Jul-2017 10:26:00 America/Chicago] PHP Fatal error:  Call to undefined function sql_logout() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_close.php on line 2
+[04-Jul-2017 10:29:23 America/Chicago] PHP Fatal error:  Call to undefined function sql_connect() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_inc.php on line 2
+[04-Jul-2017 10:29:35 America/Chicago] PHP Fatal error:  Call to undefined function sql_connect() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_inc.php on line 2
+[04-Jul-2017 10:30:06 America/Chicago] PHP Fatal error:  Call to undefined function sql_connect() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_inc.php on line 2
+[04-Jul-2017 10:34:34 America/Chicago] PHP Fatal error:  Call to undefined function sql_connect() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_inc.php on line 2
+[04-Jul-2017 10:40:42 America/Chicago] PHP Deprecated:  Function eregi() is deprecated in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 3
+[04-Jul-2017 10:51:05 America/Chicago] PHP Fatal error:  Call to undefined function sql_connect() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_inc.php on line 2
+[04-Jul-2017 11:03:48 America/Chicago] PHP Deprecated:  Function eregi() is deprecated in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 3
+[04-Jul-2017 11:03:55 America/Chicago] PHP Deprecated:  Function eregi() is deprecated in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 3
+[19-Jul-2017 10:21:02 America/Chicago] PHP Fatal error:  Call to undefined function sql_logout() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_close.php on line 2
+[19-Jul-2017 10:21:21 America/Chicago] PHP Fatal error:  Call to undefined function sql_logout() in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/db_close.php on line 2
+[19-Jul-2017 11:43:59 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 11:46:28 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 11:48:50 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 11:52:28 America/Chicago] PHP Deprecated:  Function eregi() is deprecated in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 3
+[19-Jul-2017 11:52:28 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 11:53:05 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 12:00:52 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 12:01:16 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 12:03:21 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 12:03:33 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 12:03:45 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
+[19-Jul-2017 12:03:53 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/adancehgcpnladmn/public_html/dancestudio/libcommon/classes/db_mysql.php on line 86
