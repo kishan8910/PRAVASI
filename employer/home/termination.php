@@ -11,6 +11,7 @@
 
 
     var dataString = "migrant_user_id="+migrant_user_id+"&job_detail_id="+job_detail_id;
+    
     $.ajax({
         type: "POST",
         url: "home/ajax_terminate_migrant.php",
@@ -64,7 +65,7 @@ if (sql_num_rows($result)) {
             $i=0;
     while ($row = sql_fetch_array($result)) {
 
-       
+       $job_detail_id = $row['job_detail_id'];
 
         echo "<tr>
             <td>".++$i."</td>
