@@ -10,17 +10,17 @@ include "../../libcommon/functions.php";
 
 
 $location_id = trim(sql_real_escape_string($_POST['location_id']));
-$aadhar_no	= trim(sql_real_escape_string($_POST['aadhar_no']));
+$mobile	= trim(sql_real_escape_string($_POST['mobile']));
 
 if ($location_id) {
-	$txt = 'and l.id=$location_id';
+	$txt = "and l.id='$location_id'";
 }
-if ($aadhar_no) {
-	$aadhar_no_join = "and u.aadhar_no = '$aadhar_no'";
+if ($mobile) {
+	$mobile_str = "and u.mobile = '$mobile'";
 }
 
 
-$query = "select u.first_name,u.email,u.mobile,l.location_name from user u left join location l on l.id = u.location_id where u.userType='migrant' ".$txt." ".$aadhar_no_join;
+$query = "select u.id as user_id,u.first_name,u.email,u.mobile,l.location_name from user u inner join location l on l.id = u.location_id where u.userType='migrant' ".$txt." ".$mobile_str;
 
 $result = sql_query($query,$connect);
 
@@ -33,25 +33,35 @@ if (sql_num_rows($result)) {
                 <th>Email</th>
                 <th>Location</th>
                 <th>Mobile</th>
-                <th>Location</th>
-                <th>Hire</th>
-                
+                <th>Hire</th>        
             </tr>";
             $i=0;
-	while ($row = sql_fetch_array($result) {
+	while ($row = sql_fetch_array($result)) {
+
+		$query = "select id from migrant_job_details where user_id_migrant_type = '$row[user_id]' and isEmployed = 1";
+		$resultEmployed = sql_query($query,$connect);
+
 		echo "<tr>
 			<td>".++$i."</td>
 			<td>".$row['first_name']."</td>
 			<td>".$row['email']."</td>
 			<td>".$row['location_name']."</td>
-			<td><input type='button' value='Hire' onclick='hireEmployee(".$row['id'].");'></td>
-		</tr>";		
+			<td>".$row['mobile']."</td>";
+			if (sql_num_rows($resultEmployed)) {
+				echo "<td>Already Employed</td>";
+			}
+			else
+			{
+				echo "<td><input type='button' value='Hire' class='btn' onclick='hireEmployee(".$row['user_id'].");'></td>
+		</tr>";
+			}
+					
 	}
 	echo"</table></div></div></div>";
 }
 else
 {
-    echo "<h2 style=\"text-align:center; margin:5% 5%; color:#F00;\">No Dance Type Defined</h2>";
+    echo "<h4 style=\"text-align:center; margin:5% 5%; color:#F00;\">No Search Result Found</h4>";
 }
 
 

@@ -14,12 +14,54 @@
 </style>
 
 <script type="text/javascript">
+function hireEmployee(user_id)
+{
+    jConfirm('Are you sure to?', 'Confirmation', function(r) {
+    if( r==true)
+    {
+
+
+    
+
+
+    var dataString = "user_id="+user_id;
+    $.ajax({
+        type: "POST",
+        url: "home/ajax_hire_migrant.php",
+        data: dataString,
+        success: function(response)
+        {
+
+            if (response == "1") 
+            {
+                jAlert("<span style='color:red;'>Error occured.</span>");
+            }
+            else
+            {
+                jAlert("<span style='color:blue;'>Success</span>", 'Success', function(r) {
+                   if(r == true)
+                   {
+                       window.location.reload();
+                   }
+                   });
+                
+                  
+            }
+
+        }
+      });  
+     return false;
+ }
+ });
+}
 
 function searchUser()
 {
-    var aadhar_no = $("#aadhar_no").val();
-    var location_id = $("#location_id").val();
-    var dataS = "aadhar_no="+aadhar_no+"&location_id="+location_id;
+    var mobile = $("#mobile").val();
+    var location_id = $("#location").val();
+
+    var dataS = "mobile="+mobile+"&location_id="+location_id;
+
     $('#loader').show();
     $.ajax({
             type: "POST",
@@ -27,9 +69,9 @@ function searchUser()
             data: dataS,
             success: function(response)
             {
-                
+
                 $('#loader').hide(); 
-                $('#'+div).html(response);
+                $('#listlevel').html(response);
 
             }
           });  
@@ -53,8 +95,8 @@ include "session.php";
 
 <div class="input-field col s5 validation">
     <i class="material-icons prefix">drag_handle</i>
-     <input id='aadhar_no' type='text' size='30' class="required regx_general" style="text-transform:uppercase;" onblur="javascript:this.value=this.value.toUpperCase();">
-    <label for="icon_prefix">Aadhar No</label>
+     <input id='mobile' type='text' size='30' class="required regx_general" style="text-transform:uppercase;" onblur="javascript:this.value=this.value.toUpperCase();">
+    <label for="icon_prefix">Mobile No</label>
 </div>
 
 <div class="input-field col s5 validation">
@@ -81,7 +123,7 @@ include "session.php";
 
 <div class="input-field col s10">
 
-     <input name="upload" type="submit" class="btn" id="upload" value="Submit"  onclick="save_list_level('ajax_save_list_level.php', 'listlevel', 1);" >
+     <input name="upload" type="submit" class="btn" id="upload" value="Submit"  onclick="searchUser();" >
 </div>
 
 
