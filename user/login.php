@@ -5,7 +5,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST") {
 	// $email = trim(sql_real_escape_string($_POST['email']));
   $aadhar_no = trim(sql_real_escape_string($_POST['aadhar_no']));
 	$password = trim(sql_real_escape_string($_POST['password']));
-	$sql = "select id,email,password,first_name,aadhar_no,userType from user where aadhar_no = '$aadhar_no' and password = '".md5($password)."'";	
+	$sql = "select id,email,password,first_name,aadhar_no,userType,empl_tx_address from user where aadhar_no = '$aadhar_no' and password = '".md5($password)."'";	
 	$result = sql_query($sql, $connect);
 	if(sql_num_rows($result)) {
 		
@@ -15,6 +15,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST") {
 		$_SESSION['user_first_name'] = $row[3];
     $_SESSION['user_aadhar_no'] = $row[4];
     $_SESSION['user_password'] = $row[1];
+    $_SESSION['contract_address'] = $row[6];
 
 		// $_SESSION['adminPasswdSess'] = $row[2];
 

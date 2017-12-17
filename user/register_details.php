@@ -35,7 +35,7 @@ include "header.php";
                 -->
                 <br>
                 <div class="details">
-                    <form action="save_detail.php" method='POST' id="edit_details">
+                    <form action="save_detail.php"  method='POST' id="edit_details">
                     <?php 
                     	include "enter_details.php";
                     ?>

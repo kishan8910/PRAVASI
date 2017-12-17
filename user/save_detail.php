@@ -35,6 +35,8 @@ include "header.php";
 
 		$location_id			= trim(sql_real_escape_string($_POST['location']));
 
+		$empl_address_tx =  trim(sql_real_escape_string($_POST['empl_address']));
+
 
 		$passwordmd5 = md5($password);
 		// $cnfm_password = md5('$cnfm_password');
@@ -54,7 +56,8 @@ include "header.php";
 		address,
 		userType,
 		aadhar_no,
-		location_id)
+		location_id,
+		empl_tx_address)
 		values 
 		('$first_name',
 		'$middle_name',
@@ -70,7 +73,8 @@ include "header.php";
 		'$address',
 		'$userType',
 		'$aadhar_no',
-		'$location_id')";
+		'$location_id',
+		'$empl_address_tx')";
 
 		$result = sql_query($query,$connect);
 

@@ -1,6 +1,8 @@
 <script type="text/javascript" src="../libcommon/calendar/ui/ui.core.js"></script>
 <script type="text/javascript" src="../libcommon/calendar/ui/ui.datepicker.js"></script>
 <script type="text/javascript" src="../libcommon/javascripts/ajaxupload.js"></script>
+<script type="text/javascript" src="../index.js" ></script>
+
 <link href="../libcommon/calendar/themes/all.css" rel="stylesheet" type="text/css" />
 <script src="../libcommon/javascripts/jquery.validate.js"></script>
 <style type="text/css">
@@ -10,7 +12,16 @@
 </style>
 <script>
 	
+
+
+
+
+
 $(document).ready(function() {
+
+
+
+
 
 
 		Materialize.updateTextFields();
@@ -105,7 +116,86 @@ function removePhoto(url,imgurl)
 	    return false;			
 	}
 
+
+	function callContract(){
+
+		var next_id = <?php 
+    	    					$query = "select count(*) from user";
+       							$result = sql_query($query,$connect);
+       							$row = sql_fetch_array($result);
+        						echo $row[0];
+        					?>	
+       
+        
+		var new_empl_address = web3.eth.accounts[next_id];
+
+					// alert(new_empl_address);
+
+		$("#empl_address").val(new_empl_address);
+		
+
+		if( $("#userType").val() != "migrant" )
+		{
+
+			$("#edit_details").submit();
+			
+		}
+		else{		
+			
+
+			// web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+		
+			
+	
+			// abi = [{"constant":true,"inputs":[],"name":"getEmployer","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getEmployees","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"employeeAccounts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"fire","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"employerAddress","type":"address"}],"name":"hire","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"employeeAddress","type":"address"}],"name":"initEmployeeAddress","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}];
+			// EmployeeContract = web3.eth.contract(abi);
+			// contractInstance = EmployeeContract.at("0xe1b1125ffdab306dfde508c8e116eab5f14021a0");
+
+ 			web3.eth.defaultAccount = new_empl_address;
+
+
+
+ 			var txHash = contractInstance.initEmployeeAddress(new_empl_address,{gas: 1000000}); //calling constructor
+
+ 					alert(txHash);
+
+
+ 			try {
+				  var txR = web3.eth.getTransactionReceipt(txHash);
+				  if (txR.blockNumber == undefined)
+				    throw "transaction receipt not found";
+
+				  $("#edit_details").submit();
+				}
+				catch(e) {
+				  console.log("invalid tx receipt: " + e);
+				}
+
+
+				alert(txR);
+ 				// 	var jqxhr = $.post( "save_detail.php", function() {
+					//   var serial = $("#edit_details").serialize();
+					//   alert(serial);
+					// });
+
+
+ 			// var serial = $("#edit_details").serialize();
+ 			// if(retAddress != NULL)
+ 			// {
+ 			
+			// }
+			// else{
+			// 	alert("error occured while registering new user in block");
+			// }
+		}
+	}
+
+
+
 </script>
+
+
+<input type="hidden" name="empl_address" id="empl_address" value="" />
 
 <div class="container">
 <div class="row">
@@ -363,7 +453,7 @@ else
     
           <div class="input-field col s12">
            <div class="input-field col s6">
-           		<input type="submit" name="submit-btn" value="Save and Submit" class='btn'></input>
+           		<input type="button" onclick="callContract();" name="submit-btn" value="Save and Submit" class='btn'></input>
            </div>
           	<?
           		if (!$_SESSION['user_id']) {

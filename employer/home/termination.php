@@ -1,6 +1,7 @@
+<script type="text/javascript" src="../index.js" ></script>
 <script type="text/javascript">
     
-    function terminateEmployee(migrant_user_id,job_detail_id)
+    function terminateEmployee(migrant_user_id,job_detail_id,contractAddress)
     {
         jConfirm('Are you sure to terminate this employee?', 'Confirmation', function(r) {
     if( r==true)
@@ -8,6 +9,17 @@
 
 
     
+    console.log(contractAddress);
+    var employerContractAddress = <? echo '"'.$_SESSION['contract_address'].'"';?>;
+    web3.eth.defaultAccount = employerContractAddress;
+    var txr = contractInstance.fire(contractAddress);
+    
+    if (!txr) 
+    {
+        return false;
+    }
+
+    // alert(txr);
 
 
     var dataString = "migrant_user_id="+migrant_user_id+"&job_detail_id="+job_detail_id;
@@ -47,7 +59,7 @@
 <?php
 
 
-$query = "select mjt.id as job_detail_id,u.id as user_id,u.first_name,u.email,u.mobile,l.location_name from user u inner join location l on l.id = u.location_id inner join migrant_job_details mjt on u.id = mjt.user_id_migrant_type where u.userType='migrant' and mjt.user_id_employer_type = '$_SESSION[user_id]' and mjt.isEmployed = 1";
+$query = "select mjt.id as job_detail_id,u.id as user_id,u.first_name,u.email,u.mobile,l.location_name,u.empl_tx_address from user u inner join location l on l.id = u.location_id inner join migrant_job_details mjt on u.id = mjt.user_id_migrant_type where u.userType='migrant' and mjt.user_id_employer_type = '$_SESSION[user_id]' and mjt.isEmployed = 1";
 
 $result = sql_query($query,$connect);
 
@@ -65,6 +77,7 @@ if (sql_num_rows($result)) {
             $i=0;
     while ($row = sql_fetch_array($result)) {
 
+        $contractAddress = $row['empl_tx_address'];
        $job_detail_id = $row['job_detail_id'];
 
         echo "<tr>
@@ -74,7 +87,7 @@ if (sql_num_rows($result)) {
             <td>".$row['location_name']."</td>
             <td>".$row['mobile']."</td>";
            
-                echo "<td><input type='button' value='Terminate' class='btn' onclick='terminateEmployee(".$row['user_id'].",".$job_detail_id.");'></td>
+                echo "<td><input type='button' value='Terminate' class='btn' onclick=\"terminateEmployee(".$row['user_id'].",".$job_detail_id.",'".$contractAddress."');\"></td>
         </tr>";
             
                     

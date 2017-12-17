@@ -12,16 +12,29 @@
         overflow-y: auto !important;
     }
 </style>
-
+<script type="text/javascript" src="../index.js" ></script>
 <script type="text/javascript">
-function hireEmployee(user_id)
+function hireEmployee(user_id,contractAddress)
 {
+
+
     jConfirm('Are you sure to?', 'Confirmation', function(r) {
     if( r==true)
     {
 
 
+    var employerContractAddress = <? echo '"'.$_SESSION['contract_address'].'"';?>;
+    console.log(contractAddress);
+    console.log(employerContractAddress);
+    web3.eth.defaultAccount = employerContractAddress;
+    var txr = contractInstance.hire(employerContractAddress,contractAddress);
     
+    if (!txr) 
+    {
+        return false;
+    }
+
+    // alert(txr);
 
 
     var dataString = "user_id="+user_id;

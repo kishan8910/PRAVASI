@@ -165,6 +165,9 @@ CREATE TABLE `migrant_job_details` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC));
 
 
+ALTER TABLE `user` 
+ADD COLUMN `empl_tx_address` VARCHAR(150) NULL AFTER `location_id`;
+
 
 
 
