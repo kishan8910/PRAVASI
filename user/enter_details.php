@@ -157,7 +157,7 @@ function removePhoto(url,imgurl)
 
  			var txHash = contractInstance.initEmployeeAddress(new_empl_address,{gas: 1000000}); //calling constructor
 
- 					alert(txHash);
+ 					// alert(txHash);
 
 
  			try {
@@ -172,7 +172,7 @@ function removePhoto(url,imgurl)
 				}
 
 
-				alert(txR);
+				// alert(txR);
  				// 	var jqxhr = $.post( "save_detail.php", function() {
 					//   var serial = $("#edit_details").serialize();
 					//   alert(serial);
