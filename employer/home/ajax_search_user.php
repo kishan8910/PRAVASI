@@ -20,7 +20,7 @@ if ($mobile) {
 }
 
 
-$query = "select u.id as user_id,u.first_name,u.email,u.mobile,l.location_name,u.empl_tx_address from user u inner join location l on l.id = u.location_id where u.userType='migrant' ".$txt." ".$mobile_str;
+$query = "select u.id as user_id,u.first_name,u.email,u.mobile,l.location_name,u.empl_tx_address,u.aadhar_no from user u inner join location l on l.id = u.location_id where u.userType='migrant' ".$txt." ".$mobile_str;
 
 $result = sql_query($query,$connect);
 
@@ -39,6 +39,7 @@ if (sql_num_rows($result)) {
 	while ($row = sql_fetch_array($result)) {
 
 		$contractAddress = $row['empl_tx_address'];
+		$aadhar_no = $row['aadhar_no'];
 
 		$query = "select id from migrant_job_details where user_id_migrant_type = '$row[user_id]' and isEmployed = 1";
 		$resultEmployed = sql_query($query,$connect);
@@ -56,7 +57,7 @@ if (sql_num_rows($result)) {
 			}
 			else
 			{
-				echo "<td><input type='button' value='Hire' class='btn' onclick=\"hireEmployee(".$row['user_id'].",'".$contractAddress."');\"></td>
+				echo "<td><input type='button' value='Hire' class='btn' onclick=\"hireEmployee(".$row['user_id'].",'".$contractAddress."','".$aadhar_no."');\"></td>
 		</tr>";
 			}
 					

@@ -107,9 +107,7 @@ echo '
         <a href="startup-horizontal-half.html" class="brand-logo"><i class="icon-diamond white-text"></i></a>
         <ul id="nav-mobile" class="right">
           <li><a style="color: cornsilk; href="#">Welcome '.$_SESSION['user_first_name'].' !</a></li>
-
-
-          <li><a style="color: cornsilk;" href="index.php?act=logout">Logout</a></li>
+          <li><a style="color: cornsilk;" href="../user/index.php?act=logout">Logout</a></li>
         </ul>
       </div>
     </nav>';

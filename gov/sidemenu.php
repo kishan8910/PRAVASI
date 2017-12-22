@@ -27,10 +27,11 @@ $(function() {
       <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
     </div></li>
     <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
-    <li><a href='?u=home&b=h' class='' ><b>Home</b></a></li>
-    <li><a href='?u=home&b=up' class=''><b>User Profile</b></a></li>
-    <li><a href='?u=home&b=rt' class=''><b>Request Termination</b></a></li>
-    <li><a href='?u=home&b=gf' class=''><b>Give Feedback</b></a></li>
+    <li><a href='?u=home&b=gov_home' class='' ><b>Home</b></a></li>
+    <!-- <li><a href='?u=home&b=up' class=''><b>User Profile</b></a></li> -->
+    <!-- <li><a href='?u=home&b=rt' class=''><b>Request Termination</b></a></li> -->
+    <li><a href='?u=complaints&b=lc' class=''><b>List Complaints</b></a></li>
+    <li><a href='?u=home&b=vht' class=''><b>Verify Hiring Transactions</b></a></li>
   
   
   </ul>

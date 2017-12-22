@@ -169,6 +169,30 @@ ALTER TABLE `user`
 ADD COLUMN `empl_tx_address` VARCHAR(150) NULL AFTER `location_id`;
 
 
+CREATE TABLE `complaint_category` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `category_name` VARCHAR(150) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+
+
+CREATE TABLE `tbl_complaint` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `complaint_category_id` INT(11) NOT NULL,
+  `description` VARCHAR(150) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+
+ALTER TABLE `tbl_complaint` 
+ADD COLUMN `post_date` DATETIME NOT NULL AFTER `user_id`;
+
+
+
+
+
 
 
 

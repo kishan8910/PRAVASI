@@ -30,7 +30,7 @@ if( $_SERVER['REQUEST_METHOD'] == "POST") {
       window.location.href=\"../../pravasi/employer/employer.php?u=home&b=employer_home\";
         </script>";
     }
-    elseif ($ro[5] == 'gov') {
+    elseif ($row[5] == 'gov') {
       echo " <script type=\"text/javascript\">
       window.location.href=\"../../pravasi/gov/gov.php?u=home&b=gov_home\";
         </script>";
@@ -46,9 +46,11 @@ if( $_SERVER['REQUEST_METHOD'] == "POST") {
 }
 if ($_GET[act] == logout ) {
 	unset($_SESSION['user_id']);
-	unset($_SESSION['user_email']);
+
 	unset($_SESSION['user_first_name']);
 	unset($_SESSION['user_aadhar_no']);
+  unset($_SESSION['user_password']);
+  unset($_SESSION['contract_address']);
 	session_unset();
 	session_destroy();?>
 	<script type="text/javascript">
@@ -93,7 +95,7 @@ if ($_GET[act] == logout ) {
         <div class="col s6">
           <div class="card grey lighten-3 z-depth-5" style="padding: 15px;">
             <div class="card-content black-text">
-              <span class="card-title center">User Login</span>
+              <span class="card-title center">PRAVASI - USER LOGIN</span>
             </div>
             <form class="" method="post">
             <div class='row'>
@@ -124,7 +126,7 @@ if ($_GET[act] == logout ) {
             </div>
             <div class="card-action">
 
-               <a href="forgot_password.php"><button class='btn waves-effect teal lighten-1' type="button" >Forgot Password</button></a>
+              <!--  <a href="forgot_password.php"><button class='btn waves-effect teal lighten-1' type="button" >Forgot Password</button></a> -->
             
             </div>
            

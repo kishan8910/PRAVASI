@@ -14,7 +14,7 @@
 </style>
 <script type="text/javascript" src="../index.js" ></script>
 <script type="text/javascript">
-function hireEmployee(user_id,contractAddress)
+function hireEmployee(user_id,contractAddress,employeeAadhar_no)
 {
 
 
@@ -23,11 +23,13 @@ function hireEmployee(user_id,contractAddress)
     {
 
 
+    var employerAadharNo = <? echo '"'.$_SESSION['user_aadhar_no'].'"';?>;
     var employerContractAddress = <? echo '"'.$_SESSION['contract_address'].'"';?>;
-    console.log(contractAddress);
+    console.log(employeeAadhar_no);
+    console.log(employerAadharNo);
     console.log(employerContractAddress);
     web3.eth.defaultAccount = employerContractAddress;
-    var txr = contractInstance.hire(employerContractAddress,contractAddress);
+    var txr = contractInstance.hire(employerAadharNo,employeeAadhar_no);
     
     if (!txr) 
     {

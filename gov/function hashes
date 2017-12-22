@@ -1,0 +1,18 @@
+{
+	"7885c960": "fire(address)",
+	"026bfbc6": "getEmployerAddressByAadhaar(uint72)",
+	"491a110f": "getEmployerAddressByAddress(address)",
+	"e5fbe25b": "getUserAddressFromAadhaar(uint72)",
+	"7295e067": "hire(uint72,uint72)",
+	"68029b63": "initEmployeeAddress(uint72,address)",
+	"7f100061": "userAadhaar(uint256)"
+}
+
+
+ "3fa6436d": "fire(uint72)",
+    "026bfbc6": "getEmployerAddressByAadhaar(uint72)",
+    "491a110f": "getEmployerAddressByAddress(address)",
+    "e5fbe25b": "getUserAddressFromAadhaar(uint72)",
+    "7295e067": "hire(uint72,uint72)",
+    "68029b63": "initEmployeeAddress(uint72,address)",
+    "7f100061": "userAadhaar(uint256)"

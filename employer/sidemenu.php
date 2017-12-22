@@ -28,8 +28,9 @@ $(function() {
     </div></li>
     <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
     <li><a href='?u=home&b=h' class='' ><b>Home</b></a></li>
-    <li><a href='?u=home&b=up' class=''><b>User Profile</b></a></li>
+    <!-- <li><a href='?u=home&b=up' class=''><b>User Profile</b></a></li> -->
     <li><a href='?u=home&b=termination' class=''><b>Termination</b></a></li>
+    <li><a href='?u=complaints&b=pc' class=''><b>Post Complaint</b></a></li>
     <li><a href='?u=home&b=su' class=''><b>Search User</b></a></li>
   
   

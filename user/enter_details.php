@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 
 
-
+	var a ='';
 
 
 		Materialize.updateTextFields();
@@ -117,8 +117,79 @@ function removePhoto(url,imgurl)
 	}
 
 
-	function callContract(){
 
+
+
+	function getEmployeesHired(myaccount, startBlockNumber, endBlockNumber) {
+
+
+
+// 		toAscii = function(hex) {
+//     var str = '',
+//         i = 0,
+//         l = hex.length;
+//     if (hex.substring(0, 2) === '0x') {
+//         i = 2;
+//     }
+//     for (; i < l; i+=2) {
+//         var code = parseInt(hex.substr(i, 2), 16);
+//         if (code === 0) continue; // this is added
+//         str += String.fromCharCode(code);
+//     }
+//     return str;
+// };
+
+		// const abiDecoder = require('abi-decoder');
+  if (endBlockNumber == null) {
+    endBlockNumber = web3.eth.blockNumber;
+    console.log("Using endBlockNumber: " + endBlockNumber);
+  }
+  if (startBlockNumber == null) {
+    startBlockNumber = endBlockNumber - 1000;
+    console.log("Using startBlockNumber: " + startBlockNumber);
+  }
+  console.log("Searching for transactions to/from account \"" + myaccount + "\" within blocks "  + startBlockNumber + " and " + endBlockNumber);
+
+  for (var i = startBlockNumber; i <= endBlockNumber; i++) {
+    
+    var block = web3.eth.getBlock(i, true);
+    if (block != null && block.transactions != null) {
+      block.transactions.forEach( function(e) {
+        if (myaccount == "*" || myaccount == e.from || myaccount == e.to) {
+
+            if (e.input.indexOf("7295e067") == 2)  //hire function called
+             {
+             	  var functionHash = e.input.substring(2,10);
+                var employerAadhaarFromBlock = e.input;
+                var employeeAadhaarFromBlock = toAscii(e.input.substring(74));
+              
+                var table = "<table class=\" \" ><tr>  <th> Transation hash </th> <td>" + e.hash + " </td>  </tr> " +
+                            "<tr>  <th> From Address </th> <td>"    + e.from + " </td>  </tr> " +
+                            "<tr>  <th> To Address   </th> <td>"    + e.to   + " </td>  </tr> " +
+                            "<tr>  <th> Employer Aadhaar </th> <td>"    + employerAadhaarFromBlock.toString() + " </td>  </tr> " +
+                            "<tr>  <th> Employee Aadhaar </th> <td>"    + employeeAadhaarFromBlock + " </td>  </tr> " +
+                            "<tr>  <th> input        </th> <td>"    + e.input + " </td>  </tr> " +
+                            "<tr>  <th> Timestamp    </th> <td>"    + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + " </td>  </tr> " +
+                            "<tr>  <th> Value        </th> <td>"    + e.value + " </td>  </tr>  </table>" ;
+
+                $(table).appendTo('body');
+
+             }
+        }
+      })
+    }
+  }
+}
+
+
+
+
+
+
+
+
+	function callContract(){
+		
 		var next_id = <?php 
     	    					$query = "select count(*) from user";
        							$result = sql_query($query,$connect);
@@ -128,37 +199,18 @@ function removePhoto(url,imgurl)
        
         
 		var new_empl_address = web3.eth.accounts[next_id];
-
+		var aadhar_no = $("#aadhar_no").val();
 					// alert(new_empl_address);
 
 		$("#empl_address").val(new_empl_address);
 		
 
-		if( $("#userType").val() != "migrant" )
-		{
-
-			$("#edit_details").submit();
-			
-		}
-		else{		
-			
-
-			// web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-		
-			
-	
-			// abi = [{"constant":true,"inputs":[],"name":"getEmployer","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getEmployees","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"employeeAccounts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"fire","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"employerAddress","type":"address"}],"name":"hire","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"employeeAddress","type":"address"}],"name":"initEmployeeAddress","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}];
-			// EmployeeContract = web3.eth.contract(abi);
-			// contractInstance = EmployeeContract.at("0xe1b1125ffdab306dfde508c8e116eab5f14021a0");
 
  			web3.eth.defaultAccount = new_empl_address;
 
 
 
- 			var txHash = contractInstance.initEmployeeAddress(new_empl_address,{gas: 1000000}); //calling constructor
-
- 					// alert(txHash);
-
+ 			var txHash = contractInstance.initEmployeeAddress(aadhar_no, new_empl_address,{gas: 1000000}); //
 
  			try {
 				  var txR = web3.eth.getTransactionReceipt(txHash);
@@ -172,22 +224,10 @@ function removePhoto(url,imgurl)
 				}
 
 
-				// alert(txR);
- 				// 	var jqxhr = $.post( "save_detail.php", function() {
-					//   var serial = $("#edit_details").serialize();
-					//   alert(serial);
-					// });
 
 
- 			// var serial = $("#edit_details").serialize();
- 			// if(retAddress != NULL)
- 			// {
- 			
-			// }
-			// else{
-			// 	alert("error occured while registering new user in block");
-			// }
-		}
+
+				
 	}
 
 
@@ -304,7 +344,7 @@ function removePhoto(url,imgurl)
 
     <div class="input-field col s5">
       <i class="material-icons prefix">visibility</i>
-          <input type='text' size='40' name='aadhar_no' placeholder="aadhar number" value='<?=$aadhar_no?>'>
+          <input type='text' size='40' name='aadhar_no' id='aadhar_no' placeholder="aadhar number" value='<?=$aadhar_no?>'>
           <label for="icon_prefix">Aadhar Number</label>
      </div>
 
@@ -453,7 +493,8 @@ else
     
           <div class="input-field col s12">
            <div class="input-field col s6">
-           		<input type="button" onclick="callContract();" name="submit-btn" value="Save and Submit" class='btn'></input>
+           		<!-- <input type="button" onclick="getEmployeesHired('0x0874e94858e3781b0a4e8e780548e24e7639d453',0,1000);" name="submit-btn" value="Save and Submit" class='btn'></input> -->
+              <input type="button" onclick="callContract();" name="submit-btn" value="Save and Submit" class='btn'></input>
            </div>
           	<?
           		if (!$_SESSION['user_id']) {

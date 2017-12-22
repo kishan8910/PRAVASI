@@ -1,0 +1,155 @@
+
+function getEmployeesHired(myaccount, startBlockNumber, endBlockNumber) {
+
+  if (endBlockNumber == null) {
+    endBlockNumber = web3.eth.blockNumber;
+    console.log("Using endBlockNumber: " + endBlockNumber);
+  }
+  if (startBlockNumber == null) {
+    startBlockNumber = endBlockNumber - 1000;
+    console.log("Using startBlockNumber: " + startBlockNumber);
+  }
+  console.log("Searching for transactions to/from account \"" + myaccount + "\" within blocks "  + startBlockNumber + " and " + endBlockNumber);
+
+  for (var i = startBlockNumber; i <= endBlockNumber; i++) {
+    
+    var block = web3.eth.getBlock(i, true);
+    if (block != null && block.transactions != null) {
+      block.transactions.forEach( function(e) {
+        if (myaccount == "*" || myaccount == e.from || myaccount == e.to) {
+
+            if (e.input.indexOf("7295e067") == 2)  //hire function called
+             {
+              
+                var table = "<table class=\" \" >
+                             <tr>  <th> Transation hash </th> <td>" + e.hash + " </td>  </tr> " +
+                            "<tr>  <th> From Address </th> <td>"    + e.from + " </td>  </tr> " +
+                            "<tr>  <th> To Address   </th> <td>"    + e.to   + " </td>  </tr> " +
+                            "<tr>  <th> input        </th> <td>"    + e.input + " </td>  </tr> " +
+                            "<tr>  <th> Timestamp    </th> <td>"    + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + " </td>  </tr> " +
+                            "<tr>  <th> Value        </th> <td>"    + e.value + " </td>  </tr>  </table>" ;
+
+                $(table).appendTo('body');
+
+             }
+        }
+      })
+    }
+  }
+}
+
+
+
+function isHiredBy(employerAadhaar,employeeAadhaar, startBlockNumber, endBlockNumber) {
+
+  web3.eth.defaultAccount = web3.eth.accounts[0];
+ 
+  employerAddress = contractInstance.getUserAddressFromAadhaar(employerAadhaar);
+  employeeAddress = contractInstance.getUserAddressFromAadhaar(employeeAadhaar);
+
+  if (employerAddress == null || employeeAddress == nulll)
+    return;
+
+  if (endBlockNumber == null) {
+    endBlockNumber = web3.eth.blockNumber;
+    console.log("Using endBlockNumber: " + endBlockNumber);
+  }
+  if (startBlockNumber == null) {
+    startBlockNumber = endBlockNumber - 1000;
+    console.log("Using startBlockNumber: " + startBlockNumber);
+  }
+  console.log("Searching for transactions to/from account \"" + employerAddress + "\" within blocks "  + startBlockNumber + " and " + endBlockNumber);
+
+  for (var i = startBlockNumber; i <= endBlockNumber; i++) {
+    
+    var block = web3.eth.getBlock(i, true);
+    if (block != null && block.transactions != null) {
+      block.transactions.forEach( function(e) {
+        if ( employerAddress == e.from ) {
+
+            if (e.input.indexOf("7295e067") == 2)  //hire function called
+             {
+           
+                var functionHash = e.input.substring(2,10);
+                var employerAadhaarFromBlock = e.input.substring(10,74);
+                var employeeAadhaarFromBlock = e.input.substring(74);
+
+                if (employeeAadhaar == employeeAadhaarFromBlock )
+                {
+                  var table = "<table class=\" \" >
+                             <tr>  <th> Transation hash </th> <td>" + e.hash + " </td>  </tr> " +
+                            "<tr>  <th> Employer Aadhaar </th> <td>"    + employerAadhaarFromBlock + " </td>  </tr> " +
+                            "<tr>  <th> Employee Aadhaar </th> <td>"    + employeeAadhaarFromBlock + " </td>  </tr> " +
+                            "<tr>  <th> From Address </th> <td>"    + e.from + " </td>  </tr> " +
+                            "<tr>  <th> To Address   </th> <td>"    + e.to   + " </td>  </tr> " +
+                            "<tr>  <th> input        </th> <td>"    + e.input + " </td>  </tr> " +
+                            "<tr>  <th> Timestamp    </th> <td>"    + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + " </td>  </tr> " +
+                            "<tr>  <th> Value        </th> <td>"    + e.value + " </td>  </tr>  </table>" ;
+
+                  $(table).appendTo('body');
+
+                }
+
+             }
+        }
+      })
+    }
+  }
+}
+
+function isFiredBy(employerAadhaar,employeeAadhaar, startBlockNumber, endBlockNumber) {
+
+  web3.eth.defaultAccount = web3.eth.accounts[0];
+ 
+  employerAddress = contractInstance.getUserAddressFromAadhaar(employerAadhaar);
+  employeeAddress = contractInstance.getUserAddressFromAadhaar(employeeAadhaar);
+
+  if (employerAddress == null || employeeAddress == nulll)
+    return;
+
+  if (endBlockNumber == null) {
+    endBlockNumber = web3.eth.blockNumber;
+    console.log("Using endBlockNumber: " + endBlockNumber);
+  }
+  if (startBlockNumber == null) {
+    startBlockNumber = endBlockNumber - 1000;
+    console.log("Using startBlockNumber: " + startBlockNumber);
+  }
+  console.log("Searching for transactions to/from account \"" + employerAddress + "\" within blocks "  + startBlockNumber + " and " + endBlockNumber);
+
+  for (var i = startBlockNumber; i <= endBlockNumber; i++) {
+    
+    var block = web3.eth.getBlock(i, true);
+    if (block != null && block.transactions != null) {
+      block.transactions.forEach( function(e) {
+        if ( employerAddress == e.from ) {
+
+            if (e.input.indexOf("7885c960") == 2)  //hire function called
+             {
+           
+                var functionHash = e.input.substring(2,10);
+                var employerAadhaarFromBlock = e.input.substring(10,74);
+                var employeeAadhaarFromBlock = e.input.substring(74);
+
+                if (employeeAadhaar == employeeAadhaarFromBlock )
+                {
+                  var table = "<table class=\" \" >
+                             <tr>  <th> Transation hash </th> <td>" + e.hash + " </td>  </tr> " +
+                            "<tr>  <th> Employer Aadhaar </th> <td>"    + employerAadhaarFromBlock + " </td>  </tr> " +
+                            "<tr>  <th> Employee Aadhaar </th> <td>"    + employeeAadhaarFromBlock + " </td>  </tr> " +
+                            "<tr>  <th> From Address </th> <td>"    + e.from + " </td>  </tr> " +
+                            "<tr>  <th> To Address   </th> <td>"    + e.to   + " </td>  </tr> " +
+                            "<tr>  <th> input        </th> <td>"    + e.input + " </td>  </tr> " +
+                            "<tr>  <th> Timestamp    </th> <td>"    + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + " </td>  </tr> " +
+                            "<tr>  <th> Value        </th> <td>"    + e.value + " </td>  </tr>  </table>" ;
+
+                  $(table).appendTo('body');
+
+                }
+
+             }
+        }
+      })
+    }
+  }
+}

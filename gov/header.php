@@ -99,6 +99,7 @@ function getXMLHTTP() { //fuction to return the xml http object
  
 
 <?
+
 if($_SESSION['user_id'] || $_SESSION['user_first_name'] || $_SESSION['user_email'] || $_SESSION['user_aadhar_no'])
 {
 echo '
@@ -106,10 +107,10 @@ echo '
       <div class="nav-wrapper">
         <a href="startup-horizontal-half.html" class="brand-logo"><i class="icon-diamond white-text"></i></a>
         <ul id="nav-mobile" class="right">
-          <li><a style="color: cornsilk; href="#">Welcome '.$_SESSION['user_first_name'].' !</a></li>
-          <li><a style="color: cornsilk;" href="migrant.php?u=cp&b=cpf">Reset-password</a></li>
-          <li><a style="color: cornsilk;" href="migrant.php?u=home&b=migrant_home">Home</a></li>
-          <li><a style="color: cornsilk;" href="migrant.php?act=logout">Logout</a></li>
+          <li><a style="color: cornsilk; href="#">Welcome '.$_SESSION['user_first_name'].'!</a></li>
+          
+          
+          <li><a style="color: cornsilk;" href="../user/index.php?act=logout">Logout</a></li>
         </ul>
       </div>
     </nav>';
